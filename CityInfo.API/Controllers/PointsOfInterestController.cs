@@ -58,6 +58,25 @@ namespace CityInfo.API.Controllers
             //{
             //    return BadRequest();
             //}
+            
+            // Again when using the [ApiController] attribute the ModelState is checked for validity automatically
+            // so this is not needed either
+            //if(!ModelState.IsValid)
+            //{
+            //    return BadRequest();
+            //}
+            if (pointOfInterest.Description == pointOfInterest.Name)
+            {
+                ModelState.AddModelError(
+                    "Description",
+                    "The provided description should be different from the name.");
+            }
+            // need to perform this check manually now that we have added custom validation
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var city = CitiesDataStore.Current.Cities.FirstOrDefault(c => c.Id == cityId);
             if (city == null)
             {
