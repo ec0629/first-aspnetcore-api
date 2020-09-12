@@ -19,7 +19,9 @@ namespace CityInfo.API
         public void ConfigureServices(IServiceCollection services)
         {
             
-            var builder = services.AddControllers();
+            var builder = services
+                .AddControllers()
+                .AddNewtonsoftJson();
 
             // when this is uncommented serialization of json payload
             // property names will no longer be camelcased they will
