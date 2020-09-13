@@ -42,6 +42,9 @@ namespace CityInfo.API
             // for compiler configuration of DEBUG
             // we are configuring the framework to inject an instance of LocalMailService into 
             // the constructor that requests a IMailService interface
+            // Transient - establishes a new instance each time it is invoked
+            // Scoped - scoped to a particular request
+            // Singleton - same instance is used throughout the application
             services.AddTransient<IMailService, LocalMailService>();
 #else
             services.AddTransient<IMailService, CloudMailService>();
