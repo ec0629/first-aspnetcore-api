@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using CityInfo.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,6 +37,15 @@ namespace CityInfo.API
             {
                 o.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
             });
+
+#if DEBUG
+            // for compiler configuration of DEBUG
+            // we are configuring the framework to inject an instance of LocalMailService into 
+            // the constructor that requests a IMailService interface
+            services.AddTransient<IMailService, LocalMailService>();
+#else
+            services.AddTransient<IMailService, CloudMailService>();
+#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
