@@ -54,5 +54,24 @@ namespace CityInfo.API.Services
         {
             return _context.Cities.Any(c => c.Id == cityId);
         }
+
+        public void AddPointOfInterestForCity(int cityId, PointOfInterest pointOfInterest)
+        {
+            var city = GetCity(cityId, false);
+            city.PointsOfInterest.Add(pointOfInterest);
+
+        }
+
+        public bool Save()
+        {
+            return _context.SaveChanges() >= 0;
+        }
+
+        public void UpdatePointOfInterestForCity(int cityId, PointOfInterest pointOfInterest)
+        {
+            // no code is required for this method as entity framework core tracks changes
+            // in properties for its entities. It is beig included here in order to ensure
+            // a stable api if in the future ef core is no longer used.
+        }
     }
 }
