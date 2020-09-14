@@ -73,5 +73,10 @@ namespace CityInfo.API.Services
             // in properties for its entities. It is beig included here in order to ensure
             // a stable api if in the future ef core is no longer used.
         }
+
+        public void DeletePointOfInterest(PointOfInterest pointOfInterest)
+        {
+            _context.PointsOfInterest.Remove(pointOfInterest);
+        }
     }
 }
