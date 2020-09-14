@@ -15,6 +15,8 @@ namespace CityInfo.API.Entities
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+        [MaxLength(200)]
+        public string Description { get; set; }
         // By convention a complex type like City is recognized by
         // the framework as a Navigation Property, and the framework
         // will define the relationship automatically and will
